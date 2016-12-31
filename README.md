@@ -6,7 +6,11 @@ A promisified wrapper for Google Books search API
 ### Require
 let gbs = require('google-books-search-promise')('API Key');
 
-### Use
+### Methods
+- search {function} - In depth search function, that supports Multiple query options.
+- searchByTitle {function} - Search for a specific title using only a string.
+
+### gbs.search
  - query
  
  Only query.q is required
@@ -35,6 +39,33 @@ let gbs = require('google-books-search-promise')('API Key');
 
 ```javascript
 gbs.search(query, options)
+  .then(result => {
+    console.log(result);
+  })
+  .catch( error => {
+    console.log(error);
+  });
+  ```
+  
+### gbs.searchByTitle
+ - title
+
+```javascript
+  title {string}
+```
+
+- options
+
+  Both options are required
+```javascript
+  options {
+    offset : '(Number) Offset number for pagination'
+    limit: '(Number) The maximum number of entries to return. must be between 1 and 40'
+  }
+```
+
+```javascript
+gbs.searchByTitle(title, options)
   .then(result => {
     console.log(result);
   })
